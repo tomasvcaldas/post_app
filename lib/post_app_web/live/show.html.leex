@@ -1,19 +1,16 @@
 
 <div id="post">
-    <%= for post <- @posts do %>
-        <h1><%= post.title %></h1>
-        <p><%= post.body %></p>
-        <div id="comments">
-            <%= for comment <- post.comments do %>
-                <p><%= comment.body %></p>
-            <% end %>
-        </div>
+    <h1><%= @post.title %></h1>
+    <p><%= @post.body %></p>
+    <div id="comments">
+        <%= for comment <- @post.comments do %>
+            <p><%= comment.body %></p>
+        <% end %>
+    </div>
 
-        <form phx-submit="save">
-            <input type="hidden" name="post_id" value="<%= post.id %>" />
-            <textarea name="body" placeholder="Add a comment"></textarea>
-            <button type="submit">Post Comment</button>
-        </form>
-
-    <% end %>
+     <form phx-submit="save">
+        <input type="hidden" name="post_id" value=<%=@post.id %> />
+        <textarea name="body" placeholder="Add a comment"></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
 </div>
