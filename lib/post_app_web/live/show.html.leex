@@ -12,9 +12,9 @@
         <div id="comments">
           <h2>Comments</h2>
           <%= for comment <- @post.comments do %>
-            <div id="comment-body">
+            <div class="comment-body">
               <p><%= comment.body %></p>
-              <p id="comment-timestamp"><%= NaiveDateTime.to_string(comment.inserted_at)%></p>
+              <p class="comment-timestamp"><%= NaiveDateTime.to_string(comment.inserted_at)%></p>
             </div>
           <% end %>
         </div>
@@ -30,12 +30,12 @@
       #comments {
         margin-top: 20px;
       }
-      #comment-body {
+      .comment-body {
         border: 1px solid #ccc;
         padding: 10px 10px 10px 10px ;
         margin-bottom: 10px;
       }
-      #comment-timestamp {
+      .comment-timestamp {
         font-size: 0.8em;
         color: #666;
       }

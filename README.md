@@ -10,6 +10,10 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
+## Usage
+  * Run `mix run priv/repo/seeds.exs` to populate the database with 2 posts
+  * Navigate to `localhost:4000/post/:id` to access the post page and add comments
+
 ## Learn more
 
   * Official website: https://www.phoenixframework.org/
