@@ -4,17 +4,30 @@ defmodule PostApp.Post do
   alias PostApp.Post.Schema, as: PostSchema
   alias PostApp.Repo
 
-  def create(%{title: title, body: body}) do
+  @type create_params :: %{
+          title: String.t(),
+          body: String.t()
+        }
+
+  @type add_comment_params :: %{
+          body: String.t(),
+          post_id: non_neg_integer()
+        }
+
+  @spec create(create_params()) :: {:ok, PostSchema.t()} | {:error, Ecto.Changeset.t()}
+  def create(params) do
     %PostSchema{}
-    |> PostSchema.changeset(%{title: title, body: body})
+    |> PostSchema.changeset(params)
     |> Repo.insert()
   end
 
+  @spec get_all() :: [PostSchema.t()]
   def get_all do
     from(p in PostSchema, preload: [:comments])
     |> Repo.all()
   end
 
+  @spec get(non_neg_integer()) :: {:ok, PostSchema.t()} | {:error, atom()}
   def get(post_id) do
     from(p in PostSchema, where: p.id == ^post_id, preload: [:comments])
     |> Repo.one()
@@ -24,9 +37,11 @@ defmodule PostApp.Post do
     end
   end
 
-  def add_comment(%{body: body, post_id: post_id}) do
+  @spec add_comment(add_comment_params()) ::
+          {:ok, CommentSchema.t()} | {:error, Ecto.Changeset.t()}
+  def add_comment(params) do
     %CommentSchema{}
-    |> CommentSchema.changeset(%{body: body, post_id: post_id})
+    |> CommentSchema.changeset(params)
     |> Repo.insert()
   end
 end

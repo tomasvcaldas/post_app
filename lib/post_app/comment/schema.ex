@@ -16,7 +16,6 @@ defmodule PostApp.Comment.Schema do
     comment
     |> cast(attrs, [:body, :post_id])
     |> validate_required([:body])
-    # with assoc constraint the validation is only done on .insert()
     |> assoc_constraint(:post)
   end
 end
