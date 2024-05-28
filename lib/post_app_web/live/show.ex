@@ -13,18 +13,18 @@ defmodule PostAppWeb.Live.Show do
       {:ok, post} ->
         {:ok, assign(socket, :post, post)}
 
-      {:error, reason} ->
-        {:ok, assign(socket, :error, reason)}
+      _ ->
+        raise PostApp.Live.PostNotFound
     end
   end
 
   @impl true
   def handle_event("save", %{"post_id" => post_id, "body" => body}, socket) do
-    Post.add_comment(%{post_id: post_id, body: body})
-    |> MessageBroker.broadcast()
-    |> case do
-      {:ok, _} -> {:noreply, socket}
-      _ -> {:noreply, put_flash(socket, :error, "Error posting comment")}
+    with {:ok, _comment} <- Post.add_comment(%{post_id: post_id, body: body}),
+         :ok <- MessageBroker.broadcast(post_id) do
+      {:noreply, socket}
+    else
+      _ -> {:noreply, put_flash(socket, :error, "Error saving comment")}
     end
   end
 

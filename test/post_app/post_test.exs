@@ -1,12 +1,8 @@
 defmodule PostApp.PostTest do
-  use ExUnit.Case
+  use PostApp.DataCase
 
   alias Support.Factory
   alias PostApp.Post
-
-  setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PostApp.Repo)
-  end
 
   describe "create/1" do
     test "creates a post with given parameters" do
