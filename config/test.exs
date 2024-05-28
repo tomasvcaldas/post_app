@@ -20,9 +20,6 @@ config :post_app, PostAppWeb.Endpoint,
   secret_key_base: "aGEVxvnHjZUvPhkvW8unIj1oshysMTMH8iehGIbYGVrzqVmFM7AThGzCIZgF1mNE",
   server: false
 
-# In test we don't send emails.
-config :post_app, PostApp.Mailer, adapter: Swoosh.Adapters.Test
-
 # Print only warnings and errors during test
 config :logger, level: :warn
 

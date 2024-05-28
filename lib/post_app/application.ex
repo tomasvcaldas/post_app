@@ -10,8 +10,6 @@ defmodule PostApp.Application do
     children = [
       # Start the Ecto repository
       PostApp.Repo,
-      # Start the Telemetry supervisor
-      PostAppWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: PostApp.PubSub},
       # Start the Endpoint (http/https)

@@ -22,7 +22,7 @@ config :post_app, PostAppWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
-  debug_errors: true,
+  debug_errors: false,
   secret_key_base: "YwzC0rX6adVpeDlgbXOHkwp/BHmerMJorFUZ27/k7wTxcZTyP+7BwO4cbx6/ZdGL",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)

@@ -1,16 +1,50 @@
-
 <div id="post">
-    <h1><%= @post.title %></h1>
-    <p><%= @post.body %></p>
-    <div id="comments">
-        <%= for comment <- @post.comments do %>
-            <p><%= comment.body %></p>
-        <% end %>
-    </div>
+      <%= if @post do %>
+        <h1><%= @post.title %></h1>
+        <p><%= @post.body %></p>
 
-     <form phx-submit="save">
-        <input type="hidden" name="post_id" value=<%=@post.id %> />
-        <textarea name="body" placeholder="Add a comment"></textarea>
-        <button type="submit">Post Comment</button>
-    </form>
-</div>
+        <form id="post-form" phx-submit="save">
+          <input type="hidden" name="post_id" value=<%= @post.id %> />
+          <textarea name="body" placeholder="Add a comment" id="post-textarea"></textarea>
+          <button type="submit">Save</button>
+        </form>
+
+        <div id="comments">
+          <h2>Comments</h2>
+          <%= for comment <- @post.comments do %>
+            <div id="comment-body">
+              <p><%= comment.body %></p>
+              <p id="comment-timestamp"><%= NaiveDateTime.to_string(comment.inserted_at)%></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+ </div>
+
+<style>
+      #post {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      #comments {
+        margin-top: 20px;
+      }
+      #comment-body {
+        border: 1px solid #ccc;
+        padding: 10px 10px 10px 10px ;
+        margin-bottom: 10px;
+      }
+      #comment-timestamp {
+        font-size: 0.8em;
+        color: #666;
+      }
+      #post-form {
+        margin-bottom: 20px;
+      }
+      #post-textarea {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 10px;
+      }
+</style>
