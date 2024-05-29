@@ -13,6 +13,6 @@ defmodule PostAppWeb.Router do
   scope "/", PostAppWeb do
     pipe_through :browser
 
-    live "/post/:id", Live.Show, :show
+    live "/posts/:id", Live.Show, :show
   end
 end
