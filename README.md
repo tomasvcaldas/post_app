@@ -13,6 +13,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 ## Usage
   * Run `mix run priv/repo/seeds.exs` to populate the database with 2 posts
   * Navigate to `localhost:4000/post/:id` to access the post page and add comments
+  * Test the real-time comments update by opening multiple tabs for the same post
 
 ## Learn more
 
